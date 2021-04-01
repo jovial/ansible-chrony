@@ -20,3 +20,11 @@ server {{ item['server'] }}{% for opt in item['options'] %} {{ opt['option'] }}{
 
 {%   endif %}
 {% endfor %}
+{% for item in chrony_ntp_pools %}
+{%   if item['options'] is not defined %}
+pool {{ item['server'] }}
+{%   elif item['options'] is defined %}
+pool {{ item['server'] }}{% for opt in item['options'] %} {{ opt['option'] }}{% if opt['val'] is defined %} {{ opt['val'] }}{% endif %}{% endfor %}
+
+{%   endif %}
+{% endfor %}

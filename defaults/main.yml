@@ -83,3 +83,15 @@ chrony_ntp_servers:
       - option: iburst
       - option: minpoll
         val: 8
+
+# Define upstream NTP pools. Uses the same format as chrony_ntp_servers. The
+# difference is that multiple servers from the same pool will be used instead of
+# only the first one. The server key in each entry must point to an NTP pool and
+# not a single server. Can be used in conjunction with chrony_ntp_servers. E.g:
+# chrony_ntp_pools:
+#   - server: pool.ntp.org
+#     options:
+#       - option: iburst
+#       - option: minpoll
+#         val: 8
+chrony_ntp_pools: []
